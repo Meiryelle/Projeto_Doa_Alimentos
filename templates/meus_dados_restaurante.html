@@ -1,0 +1,23 @@
+<form method="POST" action="/meus-dados">
+    <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome" value="{{ dados[0] }}" required>
+    </div>
+    <div class="form-group">
+        <label for="cnpj">CNPJ</label>
+        <input type="text" class="form-control" id="cnpj" name="cnpj" value="{{ dados[1] }}" required>
+    </div>
+    <div class="form-group">
+        <label for="endereco">Endereço</label>
+        <input type="text" class="form-control" id="endereco" name="endereco" value="{{ dados[2] }}" required>
+    </div>
+    <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{ dados[3] }}" required>
+    </div>
+    <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input type="text" class="form-control" id="telefone" name="telefone" value="{{ dados[4] }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Atualizar Dados</button>
+</form>

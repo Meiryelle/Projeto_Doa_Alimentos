@@ -1,0 +1,20 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tipo</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th>Hora</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for doacao in doacoes %}
+        <tr>
+            <td>{{ doacao[0] }}</td>
+            <td>{{ doacao[1] }}</td>
+            <td>{{ doacao[2] }}</td>
+            <td>{{ doacao[3] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
