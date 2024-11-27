@@ -23,25 +23,28 @@ CREATE TABLE pessoa_fisica (
     telefone VARCHAR(20),
     localizacao VARCHAR(255) NOT NULL
 );
-
--- Tabela de restaurante
-CREATE TABLE restaurante (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    cnpj VARCHAR(18) NOT NULL UNIQUE,
-    endereco VARCHAR(255) NOT NULL,
-    telefone VARCHAR(20)
-);
-
--- Tabela de ONG
+-- Tabela de ONGs
 CREATE TABLE ong (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
+    nome VARCHAR(255) NOT NULL,
     cnpj VARCHAR(18) NOT NULL UNIQUE,
-    responsavel VARCHAR(255),
-    email VARCHAR(191) NOT NULL UNIQUE, -- Ajuste no tamanho do campo email
-    telefone VARCHAR(20)
+    responsavel VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    telefone VARCHAR(15) NOT NULL
 );
+
+-- Tabela de restaurantes
+CREATE TABLE restaurante (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    cnpj VARCHAR(18) NOT NULL UNIQUE,
+    endereco VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL, -- Adicionando email corretamente
+    senha VARCHAR(255) NOT NULL, -- Adicionando senha corretamente
+    telefone VARCHAR(15) NOT NULL
+);
+
 
 -- Tabela de doações
 CREATE TABLE doacoes (
