@@ -9,7 +9,7 @@ app.secret_key = 'sala12345'
 # Configuração do banco de dados
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''  # Coloque sua senha aqui
+app.config['MYSQL_PASSWORD'] = '12345'  # Coloque sua senha aqui
 app.config['MYSQL_DB'] = 'doacao_comida'
 
 mysql = MySQL(app)
@@ -28,9 +28,9 @@ def login():
 
         # Lista de tabelas a verificar
         tabelas = [
-            {'nome': 'usuarios', 'tipo': 'usuario', 'senha_coluna': 3},
-            {'nome': 'restaurante', 'tipo': 'restaurante', 'senha_coluna': 4},
-            {'nome': 'ong', 'tipo': 'ong', 'senha_coluna': 4}
+            {'nome': 'usuarios', 'tipo': 'usuario', 'senha_coluna': 2},  # A senha está na coluna 2 (usuarios)
+            {'nome': 'restaurante', 'tipo': 'restaurante', 'senha_coluna': 5},  # A senha está na coluna 5 (restaurante)
+            {'nome': 'ong', 'tipo': 'ong', 'senha_coluna': 6}  # A senha está na coluna 6 (ong)
         ]
 
         cur = mysql.connection.cursor()
@@ -42,12 +42,12 @@ def login():
             if usuario:
                 senha_db = usuario[tabela['senha_coluna']]
 
-                # Verifica se a senha está correta
-                if check_password_hash(senha_db, senha):
+                # Verifica se a senha está correta (comparação simples)
+                if senha_db == senha:
                     session['tipo'] = tabela['tipo']
-                    session['nome'] = usuario[1]
-                    session['email'] = usuario[2]
-                    session['usuario_id'] = usuario[0]
+                    session['nome'] = usuario[1]  # Nome está na coluna 1
+                    session['email'] = usuario[2]  # Email está na coluna 2
+                    session['usuario_id'] = usuario[0]  # ID está na coluna 0
                     flash('Login realizado com sucesso!', 'success')
                     return redirect('/area_restrita')
 
@@ -55,6 +55,7 @@ def login():
         flash('Email ou senha inválidos!', 'danger')
 
     return render_template('login.html')
+
 
 @app.route('/logout')
 def logout():
